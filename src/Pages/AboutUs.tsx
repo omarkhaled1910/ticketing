@@ -4,8 +4,7 @@ import Map from "../Components/Map/Map";
 const AboutUs = () => {
   return (
     <div>
-      <h1 className=" text-center bg-blue-100 text-5xl p-10 border-t border-b border-black">
-        {" "}
+      <h1 className="pt-20 text-center bg-blue-100 text-5xl p-10 border-t border-b border-black">
         About Our History ,Present and future
       </h1>
 

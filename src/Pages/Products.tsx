@@ -89,7 +89,7 @@ const items =[
 ]
 const Products = () => {
   return (
-    <div className='p-10'> 
+    <div className='p-10 bg-red-300'> 
 
         <h1 className=' text-4xl text-center mb-10'>Products </h1>
         <div className='flex-center'>

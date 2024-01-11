@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { pages } from "../../Constants/pages";
-
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -42,10 +42,17 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar style={{ backgroundColor:"transparent" ,position:"absolute",top:0 ,boxShadow:"none"}} >
+    <AppBar
+      style={{
+        backgroundColor: "transparent",
+        position: "absolute",
+        top: 0,
+        boxShadow: "none",
+      }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-         <Logo />
+          <Logo />
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -98,6 +105,14 @@ const Navbar = () => {
               </Link>
             ))}
           </Box>
+          <div className=" w-36 mr-5 ">
+            <LanguageSwitcher />
+          </div>
+          <Link to="/login">
+            <button className=" border-2  border-white mx-4 h-8 w-20 rounded-lg">
+              register
+            </button>
+          </Link>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

@@ -49,7 +49,7 @@ export default function Footer() {
               className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
               Follow Us
             </h6>
-            <div className='flex space-x-2'>
+            <div className='flex space-x-2 justify-center md:justify-start'>
             <p className="">
               <a 
               ><Instagram /></a>

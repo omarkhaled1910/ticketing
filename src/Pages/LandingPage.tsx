@@ -11,8 +11,7 @@ import {
 import SliderWIthIndicators from "../Components/SliderWithIndicator/SliderWIthIndicators";
 import Footer from "../Components/Footer/Footer";
 import SliderGrid from "../Components/SliderGrid/SliderGrid";
-
-
+import { useTranslation, Trans } from "react-i18next";
 
 const experts = [
   {
@@ -39,12 +38,13 @@ const experts = [
 ];
 
 const LandingPage = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div
         style={{
           background:
-            "linear-gradient(90deg, rgba(196,14,73,1) 0%, rgba(161,17,217,1) 37%, rgba(199,14,181,1) 77%, rgba(255,10,142,1) 100%)",
+            " linear-gradient(279deg, rgba(226,167,200,0.7819502801120448) 3%, rgba(217,17,65,0.6783088235294117) 49%, rgba(255,135,188,0.5606617647058824) 79%)",
           height: "550px",
           backgroundRepeat: "no-repeat",
         }}
@@ -61,14 +61,14 @@ const LandingPage = () => {
           maxWidth: "800px",
         }}
       >
-        <h1 className="mb-20 text-left" style={{ fontSize: 48 }}>
-          the power of <br /> smart ticketing
+        <h1 className="mb-20 text-left text-[30px] sm:text-[48px]" >
+          {t("power")} <br /> {t("smart")}
         </h1>
 
         <div className="relative ">
           <input
             placeholder="search by artist, event or venue"
-            className="border-none bg-white rounded-2xl px-6 py-3 w-full"
+            className="border-none bg-white rounded-2xl px-6 py-3 w-full text-black"
           />
           <Search
             className="absolute right-4 top-3"
@@ -78,13 +78,13 @@ const LandingPage = () => {
       </div>
       <SliderGrid />
       <section className="flex-center bg-[#ff1800a3]  text-white p-8 cursor-pointer">
-        
         <h1 className=" text-2xl">find tickets</h1>
-        <ChevronRight style={{
-          height:40,
-          width:40
-        }}/>
-
+        <ChevronRight
+          style={{
+            height: 40,
+            width: 40,
+          }}
+        />
       </section>
       <section
         style={{
@@ -107,18 +107,16 @@ const LandingPage = () => {
 
       <section
         style={{
-          paddingBlock:10,
+          paddingBlock: 10,
           background:
             "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(217,17,162,0.3449754901960784) 71%, rgba(255,10,118,0.5606617647058824) 95%)",
-            marginBottom: "40px",
-            width: "100%",
-
-              
+          marginBottom: "40px",
+          width: "100%",
         }}
         className="  py-5  "
       >
         <div className="container">
-          <h2 className="tracking-[2px] leading-tight text-[64px] text-left  my-5 mb-10 text-pink-400">
+          <h2 className="tracking-[2px] leading-tight text-[48px] sm:text-[64px] text-left  my-5 mb-10 text-pink-400">
             an
             <span
               style={{
@@ -128,8 +126,8 @@ const LandingPage = () => {
                 WebkitBackgroundClip: "text",
               }}
             >
-              
-             {" "} epic {" "}
+              {" "}
+              epic{" "}
             </span>
             exper
             <span
@@ -140,22 +138,20 @@ const LandingPage = () => {
                 WebkitBackgroundClip: "text",
               }}
             >
-              
-               ience
+              ience
             </span>
             <br />
             from purchase
             <br />
             through performance
           </h2>
-          <div 
-          style={{
-
-            WebkitMaskImage:
-            "linear-gradient(to bottom, transparent, black 0%, black 40%, transparent 100%)",
-          }}
-          
-          className=" mb-10 grid grid-cols-4 gap-10 justify-center  place-items-center h-full">
+          <div
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent, black 0%, black 40%, transparent 100%)",
+            }}
+            className="mb-28 grid grid-cols-2 md:grid-cols-4 gap-10 justify-center  place-items-center h-full"
+          >
             {experts.map(({ title, Icon }) => (
               <div
                 key={title}
