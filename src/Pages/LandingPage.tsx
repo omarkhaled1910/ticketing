@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MutableRefObject, useEffect, useRef } from "react";
 import {
   ThumbUpOffAlt,
   PersonOutline,
@@ -36,9 +36,42 @@ const experts = [
     Icon: CalendarMonthOutlined,
   },
 ];
+const options = {
+  rootMargin: "0px",
+  threshold: 1.0,
+};
 
 const LandingPage = () => {
   const { t } = useTranslation();
+  const followUsRef = useRef<MutableRefObject<Element>>();
+  const floatingButtonsRef = useRef<MutableRefObject<Element>>();
+  const itemEls = useRef(new Array());
+
+  const callback = (entries: any) => {
+    console.log("followus on the svreen", entries);
+    const isFloowUsVisible = entries?.[0].isIntersecting;
+    if (isFloowUsVisible) {
+      console.log("visible", floatingButtonsRef.current);
+      // floatingButtonsRef.current?.classList.add("translate");
+      itemEls.current.forEach((element) => {
+        console.log(element);
+        element?.classList.add("translate");
+      });
+
+      return;
+    }
+
+    console.log("not visible");
+  };
+  useEffect(() => {
+    if (typeof itemEls !== "undefined") {
+      const observer = new IntersectionObserver(callback, options);
+      itemEls.current.forEach((element) => {
+        observer.observe(element);
+      });
+    }
+  }, [itemEls]);
+
   return (
     <>
       <div
@@ -61,7 +94,7 @@ const LandingPage = () => {
           maxWidth: "800px",
         }}
       >
-        <h1 className="mb-20 text-left text-[30px] sm:text-[48px]" >
+        <h1 className="mb-20 text-left text-[30px] sm:text-[48px]">
           {t("power")} <br /> {t("smart")}
         </h1>
 
@@ -154,8 +187,9 @@ const LandingPage = () => {
           >
             {experts.map(({ title, Icon }) => (
               <div
+                ref={(element) => itemEls.current.push(element)}
                 key={title}
-                className="flex-center-col gap-10 bg-white p-10  rounded-2xl  h-full  shadow-md hover:shadow-2xl duration-300 hover:border-blue-300 "
+                className="flex-center-col gap-10 bg-white p-10  rounded-2xl  h-full  shadow-md hover:shadow-2xl duration-300 hover:border-blue-300 items "
               >
                 <p className=" !brightness-100  text-xl text-center text-pink-400">
                   Union Service have 15 years of import and export experience

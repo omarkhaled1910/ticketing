@@ -1,103 +1,101 @@
-import React from 'react'
-import { v4 as uuidv4 } from "uuid";
-import TableComp from '../Components/Table/Table'
+import React, { useCallback, useState } from "react";
+import { Link } from "react-router-dom";
+import ProductCard from "../Components/ProductCard/ProductCard";
+import UploadYourOwn from "../Components/UploadYourOwn/UploadYourOwn";
 
-const items =[
-    {
-        created: new Date().toDateString(),
-        description: "quiz.description",
-        id: uuidv4(),
-        modified: new Date().toDateString(),
-        questions: "quiz.questions",
-        score: null,
-        title: "quiz.title",
-        url: "quiz.url",
-      },
-      {
-        created: new Date().toDateString(),
-        description: "quiz.description",
-        id: uuidv4(),
-        modified: new Date().toDateString(),
-        questions: "quiz.questions",
-        score: null,
-        title: "quiz.title",
-        url: "quiz.url",
-      },   {
-        created: new Date().toDateString(),
-        description: "quiz.description",
-        id: uuidv4(),
-        modified: new Date().toDateString(),
-        questions: "quiz.questions",
-        score: null,
-        title: "quiz.title",
-        url: "quiz.url",
-      },   {
-        created: new Date().toDateString(),
-        description: "quiz.description",
-        id: uuidv4(),
-        modified: new Date().toDateString(),
-        questions: "quiz.questions",
-        score: null,
-        title: "quiz.title",
-        url: "quiz.url",
-      },   {
-        created: new Date().toDateString(),
-        description: "quiz.description",
-        id: uuidv4(),
-        modified: new Date().toDateString(),
-        questions: "quiz.questions",
-        score: null,
-        title: "quiz.title",
-        url: "quiz.url",
-      },   {
-        created: new Date().toDateString(),
-        description: "quiz.description",
-        id: uuidv4(),
-        modified: new Date().toDateString(),
-        questions: "quiz.questions",
-        score: null,
-        title: "quiz.title",
-        url: "quiz.url",
-      },   {
-        created: new Date().toDateString(),
-        description: "quiz.description",
-        id: uuidv4(),
-        modified: new Date().toDateString(),
-        questions: "quiz.questions",
-        score: null,
-        title: "quiz.title",
-        url: "quiz.url",
-      },   {
-        created: new Date().toDateString(),
-        description: "quiz.description",
-        id: uuidv4(),
-        modified: new Date().toDateString(),
-        questions: "quiz.questions",
-        score: null,
-        title: "quiz.title",
-        url: "quiz.url",
-      },   {
-        created: new Date().toDateString(),
-        description: "quiz.description",
-        id: uuidv4(),
-        modified: new Date().toDateString(),
-        questions: "quiz.questions",
-        score: null,
-        title: "quiz.title",
-        url: "quiz.url",
-      },
-]
+const items = [
+  {
+    name: "Barady Soul",
+    price: 2500,
+    images: [
+      "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    ],
+    id: "25",
+  },
+  {
+    name: "Barady Soul",
+    price: 2500,
+    images: [
+      "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    ],
+    id: "25",
+  },
+  {
+    name: "Barady Soul",
+    price: 2500,
+    images: [
+      "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    ],
+    id: "25",
+  },
+  {
+    name: "Barady Soul",
+    price: 2500,
+    images: [
+      "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    ],
+    id: "25",
+  },
+  {
+    name: "Barady Soul",
+    price: 2500,
+    images: [
+      "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    ],
+    id: "25",
+  },
+  {
+    name: "Barady Soul",
+    price: 2500,
+    images: [
+      "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    ],
+    id: "25",
+  },
+  {
+    name: "Barady Soul",
+    price: 2500,
+    images: [
+      "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    ],
+    id: "25",
+  },
+];
 const Products = () => {
+  const [hoveredItem, setHoveredItem] = useState(0);
+  const onHover = useCallback((i: number) => {
+    setHoveredItem(i);
+  }, []);
+
   return (
-    <div className='p-10 bg-red-300'> 
+    <div className="container mx-auto ">
+      <UploadYourOwn />
 
-        <h1 className=' text-4xl text-center mb-10'>Products </h1>
-        <div className='flex-center'>
-
-        <TableComp />
-        </div>
+      <div
+        style={{
+          gridTemplateColumns: `repeat(auto-fill, ${"300px"})`,
+          gap: "40px",
+        }}
+        className=" grid  grid-cols-4 gap-y-8 border-b-2 pb-10 container mx-auto "
+      >
+        {items?.map((item, index) => (
+          <Link key={item.id} to={`/product/${item.id}`}>
+            <ProductCard
+              onHover={onHover}
+              isHovered={index + 1 === hoveredItem}
+              src={
+                item.images?.[0] ||
+                "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+              }
+              id={index + 1}
+              key={index + 1}
+              item={item}
+            />
+          </Link>
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

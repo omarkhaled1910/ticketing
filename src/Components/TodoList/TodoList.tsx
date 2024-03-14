@@ -23,11 +23,11 @@ const TodoList = () => {
 
   return (
     <div className="py-5">
-      <h1 style={{color:"cornflowerblue"}}>Availiable Todos</h1>
+      <h1 style={{ color: "cornflowerblue" }}>Availiable Todos</h1>
       <h5 style={{ color: "gray" }}>
         NOTE: want to edit a todo just Drag and Drop it !!
       </h5>
-      <DragDropContext onDragEnd={(result) => onDragEnd(result, columns)}>
+      {/* <DragDropContext onDragEnd={(result) => onDragEnd(result, columns)}>
         <div
           style={{
             display: "flex",
@@ -93,7 +93,7 @@ const TodoList = () => {
             );
           })}
         </div>
-      </DragDropContext>
+      </DragDropContext> */}
     </div>
   );
 };
