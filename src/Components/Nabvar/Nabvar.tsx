@@ -15,22 +15,28 @@ import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { pages } from "../../Constants/pages";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import NavItemMenu from "./NavItemMenu";
+import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-const Navbar = () => {
+const Navbar = ({ isHome = false }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const [hoveredItem, setHoveredItem] = React.useState("");
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
+  };
+  const handleShowNavMenu = (id: string) => {
+    setHoveredItem(id);
   };
 
   const handleCloseNavMenu = () => {
@@ -44,8 +50,8 @@ const Navbar = () => {
   return (
     <AppBar
       style={{
-        backgroundColor: "transparent",
-        position: "absolute",
+        backgroundColor: isHome ? "transparent" : "rgb(0 0 0 / 20%)",
+        position: isHome ? "absolute" : "inherit",
         top: 0,
         boxShadow: "none",
       }}
@@ -93,15 +99,36 @@ const Navbar = () => {
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map(({ page, link }) => (
-              <Link key={link} to={link}>
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
+            {pages.map(({ page, link, subLinks }) => (
+              <Link
+                className="flex flex-col items-center relative"
+                onMouseLeave={() => handleShowNavMenu("")}
+                onMouseEnter={() => handleShowNavMenu(link)}
+                key={link}
+                to={link}
+              >
+                <div className="flex items-center relative">
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page}
+                  </Button>
+                  {subLinks && (
+                    <ArrowDropDown
+                      style={{
+                        transform: link === hoveredItem ? "rotate(180deg)" : "",
+                      }}
+                      className=" !transition-all  !duration-700 !inline"
+                    />
+                  )}
+                </div>
+
+                <NavItemMenu
+                  show={!!(hoveredItem === link && subLinks)}
+                  items={subLinks}
+                />
               </Link>
             ))}
           </Box>

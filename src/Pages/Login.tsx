@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 
 const Login = () => {
   return (
-    <section className=" h-[100vh] bg-slate-400">
+    <section className=" h-[100vh] bg-slate-100">
       <div className="h-full">
         <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
           <div className="shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
@@ -74,12 +74,12 @@ const Login = () => {
                 </p>
               </div>
 
-              <div className="relative mb-6" >
-             <TextField label="Email Address" fullWidth />
+              <div className="relative mb-6">
+                <TextField label="Email Address" fullWidth />
               </div>
 
-              <div className="relative mb-6" >
-              <TextField label="Password" fullWidth type="password" />
+              <div className="relative mb-6">
+                <TextField label="Password" fullWidth type="password" />
               </div>
 
               <div className="mb-6 flex items-center justify-between">

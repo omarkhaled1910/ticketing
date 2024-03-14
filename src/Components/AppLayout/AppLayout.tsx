@@ -4,7 +4,7 @@ import Navbar from "../Nabvar/Nabvar";
 import { Outlet } from "react-router-dom";
 import StickyHeader from "../StickyHeader/StickyHeader";
 
-const AppLayout = () => {
+const AppLayout = ({ isHome = false }) => {
   const [isSticky, setSticky] = useState(false);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const AppLayout = () => {
   return (
     <div>
       <ToastContainer />
-      <Navbar />
+      <Navbar isHome={isHome} />
       {isSticky && <StickyHeader />}
       <Outlet />
     </div>

@@ -28,7 +28,8 @@ const AddTodo = () => {
 
   return (
     <div style={{ borderBottom: "2px solid #d8d8d8", paddingBlock: 20 }}>
-      <h4>Add a New Todo</h4>
+      <h3 className=" text-xl">Add a New Todo</h3>
+      <br />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex-center-col" style={{ gap: 20 }}>
           <Controller
@@ -56,11 +57,7 @@ const AddTodo = () => {
               control={control}
               defaultValue={1}
               render={({ field }) => (
-                <RadioGroup
-                  aria-labelledby="status"
-                  {...field}
-                  row
-                >
+                <RadioGroup aria-labelledby="status" {...field} row>
                   {TODO_OPTIONS.map((opt) => (
                     <FormControlLabel
                       value={opt.id}
